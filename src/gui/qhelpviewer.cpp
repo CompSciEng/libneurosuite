@@ -4,8 +4,8 @@ Copyright (C) 2012 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kda
 
 #include "qhelpviewer.h"
 #include <QVBoxLayout>
-#include <QWebView>
-#include <QWebPage>
+#include <QWebEngineView>
+#include <QWebEnginePage>
 #include <QDebug>
 #include <QDialogButtonBox>
 #include <QDesktopServices>
@@ -15,7 +15,7 @@ QHelpViewer::QHelpViewer(QWidget *parent)
 {
     setWindowTitle(tr("Handbook"));
     QVBoxLayout *lay = new QVBoxLayout;
-    mView = new QWebView;
+    mView = new QWebEngineView;
     lay->addWidget(mView);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
@@ -23,7 +23,9 @@ QHelpViewer::QHelpViewer(QWidget *parent)
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(mView, SIGNAL(linkClicked(QUrl)), SLOT(slotLinkCLicked(QUrl)));
     setLayout(lay);
-    mView->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    // RHMmView->page()->setLinkDelegationPolicy(QWebEnginePage::DelegateExternalLinks);
+    //RHMmView->page()->acceptNavigationRequest();
+    // !!! Rob, put something back
 }
 
 QHelpViewer::~QHelpViewer()

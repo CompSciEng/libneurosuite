@@ -49,7 +49,7 @@
 #include <kurllabel.h>
 #endif
 
-#include <klusterseparator.h>
+#include "klusterseparator.h"
 
 
 static bool sAllowEmbeddingInGraphicsView = false;

@@ -8,7 +8,7 @@ Copyright (C) 2012 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kda
 #include <QUrl>
 
 #include "libneurosuite_export.h"
-class QWebView;
+class QWebEngineView;
 
 class NEUROSUITE_EXPORT QHelpViewer : public QDialog
 {
@@ -20,7 +20,7 @@ public:
 private Q_SLOTS:
     void slotLinkCLicked(const QUrl &url);
 private:
-    QWebView *mView;
+    QWebEngineView *mView;
 };
 
 #endif // QHELPVIEWER_H

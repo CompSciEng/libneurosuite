@@ -629,4 +629,5 @@ void SelectionModel::select( const QItemSelection &selection, QItemSelectionMode
   QItemSelectionModel::select( selection, command );
 }
 
-#include "qpageview_p.moc"
+//RHM #include "qpageview_p.moc"
+#include "moc_qpageview_p.cpp"

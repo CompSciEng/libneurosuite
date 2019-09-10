@@ -31,8 +31,8 @@ Port to Qt4
 #ifndef QPAGEDIALOG_H
 #define QPAGEDIALOG_H
 
-#include <qextenddialog.h>
-#include <qpagewidget.h>
+#include "qextenddialog.h"
+#include "qpagewidget.h"
 
 class QPageDialogPrivate;
 

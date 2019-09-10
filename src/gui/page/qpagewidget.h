@@ -28,7 +28,7 @@ Port to Qt4
 #ifndef QPAGEWIDGET_H
 #define QPAGEWIDGET_H
 
-#include <qpagewidgetmodel.h>
+#include "qpagewidgetmodel.h"
 
 #include "qpageview.h"
 
