@@ -19,6 +19,7 @@ public:
           clearAction(0),
           q(qq)
     {
+        //assert (false);
         createRecentMenu();
     }
 
@@ -29,6 +30,7 @@ public:
     void updateActionsState();
     void initializeRecentMenu();
     void fileSelected(QAction *action);
+    bool bActionExists(const QString &file);
 
     QStringList recentFiles;
     int maximumFileCount;
@@ -37,6 +39,17 @@ public:
     QAction *clearAction;
     QRecentFileAction *q;
 };
+
+bool QRecentFileActionPrivate::bActionExists(const QString &file)
+{
+    Q_FOREACH (QAction *action, q->menu()->actions()) {
+        if (action->data().toString()==file) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 void QRecentFileActionPrivate::fileSelected(QAction *action)
 {
@@ -53,6 +66,9 @@ void QRecentFileActionPrivate::initializeRecentMenu()
         const int numberOfRecentFile(recentFiles.count());
         for (int i=0;i<numberOfRecentFile;++i) {
             QString file = recentFiles.at(i);
+
+            if (bActionExists(file))
+                continue;
 
             const QString actionText = QString::fromLatin1("%1 [%2]").arg(QFileInfo(file).fileName()).arg(file);
             QAction* action = new QAction(actionText,q);
@@ -88,6 +104,10 @@ void QRecentFileActionPrivate::createRecentMenu()
 void QRecentFileActionPrivate::addAction(const QString &file)
 {
     if (file.isEmpty())
+        return;
+
+    // don't add if it is already there
+    if (bActionExists(file))
         return;
 
     QString truncateFileName = file;
@@ -136,6 +156,7 @@ void QRecentFileActionPrivate::removeAction(const QString &file)
 QRecentFileAction::QRecentFileAction(QObject *parent)
     : QAction(parent), d(new QRecentFileActionPrivate(this))
 {
+    //assert (false);
     setText(tr("Recent Files..."));
 }
 
@@ -172,6 +193,12 @@ void QRecentFileAction::addRecentFile(const QString &file)
         return;
     if (d->maximumFileCount && (menu()->actions().count()>=d->maximumFileCount+3)) {
         QStringList lst = d->recentFiles;
+
+        if (d->bActionExists(file))
+        {
+            return;
+        }
+
         lst.prepend(file);
         QStringList newLst;
         for (int i = 0; i < d->maximumFileCount; ++i) {
@@ -238,8 +265,15 @@ void QRecentFileAction::setMaximumFileCount(int maximumRecentFile )
     Sets the list of recent files to display in the menu
 */
 void QRecentFileAction::setRecentFiles(const QStringList& lst)
-{
-    d->recentFiles = lst;
+{   
+    Q_FOREACH (const QString fileName, lst)
+    {
+        qDebug() << "recent file name " <<fileName << "\n";
+        if (!(d->bActionExists(fileName)))
+            d->recentFiles.push_back(fileName);
+    }
+    //d->recentFiles = lst;
+
     d->createRecentMenu();
 }
 
