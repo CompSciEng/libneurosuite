@@ -41,7 +41,7 @@ SOURCES += \
     ../src/shared/itemcolors.cpp \
     ../src/shared/utilities.cpp \
     ../src/shared/zoomwindow.cpp \
-    ../src/libinqt5/qstandardpaths_win.cpp \
+#    ../src/libinqt5/qstandardpaths_win.cpp \
     ../src/gui/page/klusterseparator.cpp \
     ../src/gui/page/qextenddialog.cpp \
     ../src/gui/page/qpagedialog.cpp \
@@ -50,6 +50,11 @@ SOURCES += \
     ../src/gui/page/qpageview_p.cpp \
     ../src/gui/page/qpagewidget.cpp \
     ../src/gui/page/qpagewidgetmodel.cpp
+
+win32: SOURCES += ../src/libinqt5/qstandardpaths_win.cpp
+unix: SOURCES += ../src/libinqt5/qstandardpaths_unix.cpp
+
+
 
 HEADERS += \
         libneurosuite.h \
@@ -68,10 +73,6 @@ HEADERS += \
     ../src/shared/zoomwindow.h \
     ../src/libinqt5/qstandardpaths.h \
     ../src/libneurosuite_export.h \
-    libneurosuite.h \
-    libneurosuite_global.h \
-    libneurosuite.h \
-    libneurosuite_global.h \
     ../src/gui/page/klusterseparator.h \
     ../src/gui/page/qextenddialog.h \
     ../src/gui/page/qextenddialog_p.h \
