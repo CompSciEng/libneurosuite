@@ -268,7 +268,7 @@ void QRecentFileAction::setRecentFiles(const QStringList& lst)
 {   
     Q_FOREACH (const QString fileName, lst)
     {
-        qDebug() << "recent file name " <<fileName << "\n";
+        //qDebug() << "recent file name " <<fileName << "\n";
         if (!(d->bActionExists(fileName)))
             d->recentFiles.push_back(fileName);
     }

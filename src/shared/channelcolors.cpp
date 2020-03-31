@@ -27,7 +27,7 @@ ChannelColors::ChannelColors():channelList(){
 }
 
 ChannelColors::~ChannelColors(){
-    qDebug() << "~ChannelColors()";
+    //qDebug() << "~ChannelColors()";
     qDeleteAll(channelList);
     channelList.clear();
 }
