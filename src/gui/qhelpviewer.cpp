@@ -23,9 +23,6 @@ QHelpViewer::QHelpViewer(QWidget *parent)
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
     connect(mView, SIGNAL(linkClicked(QUrl)), SLOT(slotLinkCLicked(QUrl)));
     setLayout(lay);
-    // RHMmView->page()->setLinkDelegationPolicy(QWebEnginePage::DelegateExternalLinks);
-    //RHMmView->page()->acceptNavigationRequest();
-    // !!! Rob, put something back
 }
 
 QHelpViewer::~QHelpViewer()
